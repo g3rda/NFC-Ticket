@@ -6,6 +6,7 @@ import com.ticketapp.auth.app.ulctools.Commands;
 import com.ticketapp.auth.app.ulctools.Utilities;
 
 import java.security.GeneralSecurityException;
+import java.nio.ByteBuffer;
 
 /**
  * TODO:
@@ -90,11 +91,11 @@ public class Ticket {
         res = utils.writePages(appTagVersion, 0, 4, 1);
         // max number of rides
         byte[] maxRides = ByteBuffer.allocate(4).putInt(5).array();
-        res = utils.writePages(maxRides, 0, 5, 1);
+        utils.writePages(maxRides, 0, 5, 1);
 
         // Set information to show for the user
         if (res) {
-            infoToShow = "Wrote: " + new String(message);
+            infoToShow = "Wrote: " + new String(appTagVersion);
         } else {
             infoToShow = "Failed to write";
         }
