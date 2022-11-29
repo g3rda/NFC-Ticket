@@ -82,8 +82,15 @@ public class Ticket {
         }
 
         // Example of writing:
-        byte[] message = "info".getBytes();
-        res = utils.writePages(message, 0, 6, 1);
+        // byte[] message = "info".getBytes();
+        // res = utils.writePages(message, 0, 6, 1);
+        
+        // app tag + version
+        byte[] appTagVersion = "ASv1".getBytes();
+        res = utils.writePages(appTagVersion, 0, 4, 1);
+        // max number of rides
+        byte[] maxRides = ByteBuffer.allocate(4).putInt(5).array();
+        res = utils.writePages(maxRides, 0, 5, 1);
 
         // Set information to show for the user
         if (res) {
